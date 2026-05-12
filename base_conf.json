@@ -1,0 +1,151 @@
+{
+  "log": {
+    "access": "none",
+    "dnsLog": false,
+    "error": "",
+    "loglevel": "warning",
+    "maskAddress": ""
+  },
+  "api": {
+    "tag": "api",
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "api",
+      "listen": "127.0.0.1",
+      "port": 62789,
+      "protocol": "tunnel",
+      "settings": {
+        "address": "127.0.0.1"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "address": "37.128.204.200",
+        "port": 8442,
+        "id": "a39e4210-4518-44cb-9d54-cf508d27a58d",
+        "encryption": "none"
+      },
+      "tag": "to-free",
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "publicKey": "SRaW97ZsAR3ig-Yq6_hxREe9rBwTFamdG9EAQjZsQzA",
+          "fingerprint": "chrome",
+          "serverName": "vkvideo.ru",
+          "shortId": "2b4027bee2",
+          "spiderX": "/",
+          "mldsa65Verify": "NXLM3OHplOpgIK_xdrXFEiozlTWLBl2yZUSKa_x83twcEFEsa9R7oPsvGhsG9PEc4aVabSnmVNECzTcRd1pw0G99njCroDHxhWfHGTyA_AU1RX31wvqQ0BO8U6UXMCkPK40ZJnOgBLfM9AyWN7jEHXW2OjoRv3ADCORIBHcfb8O3Glvg9r4ohF2LOSRqTrszxSjeK0eiGodapsNrm1nWAIrSZ4QZoLudGalF1EFQUOEqrlnEueCYEuHNzuBbES2pvceXmMikWaZnY01aWiGKeP4fPowRJAzEIIdaHkO2Ub-XQGfaqCESJUCCiG4HWwXy2_2_XvtjVvfdHq5nabTdWALKuuKrRPZLqD4ie1rOmuFumSTBhVkveZnLmbeODsRAYgOVpDLPemTNkspdtFo6DDIzdeGAs9_QijFFCqy67rEq937F2ZSJ3pWUrqfJV4AvlsG0sr9uQFN-igAXtLrDUKTOKM0n6eA3m-w81piFmFFF2vDLJJtrBP-vdHJ9N7occuN3u6Gn37SlxZ6b3VWitk0KPZbQbOXhStgjAayRD5bwgH3pPk7jMCs-VB3doEE9LJcrj6QYgSAf1pGmlcxZ3HsYPjlGvE58zcwKJrYJvZoIO1aRDNRmCi7irj09_u_pccUrI1X0X_b9rr8MF-EP41KlCcVZyFp-MWrL4RZugn36_d2mdYXrPPalrWgT3y_9taEdZ4R8mKbq3t6VM4EUh5AXKGB9Smb1XtwHZgOpOYP618H2D2x23b842guqz2RBs1D0TmP5ykatwehdhB02nsbCKBY7ZQOi9b6tKAghxjBOyeE25lvtpGtItVFFh3ldZN6a6v9eLz19xDc2b-LxJUY_jaqDMDaPKDvZxZ5qUbJdc4pt5qhZb_1Ldw4S_zIJ7QVPg8caUqMcp70l_0PGTMpwghJSLkmNLKSBYeWyOg5rwZ9Qt_wHDuM18_2jD-B3C4N0w4eCD9s0gUlp1OAqarFupGNL8VGIP2ThGr6gcGuSsCo_fK82JZ6qSq2lQ3r0ZGCWGuBPKXIbWxodckXKtNoOSk2RlZxr_32rwq3HoojvVsbXidLA3oogJsZjnNBoxnNrJVoBwmkSgeI_eyGmXi2Ll8jI_BOF843X--uHSNmRlXOsJAPBmrmUGqlkRmjIbR4OSdlTcDzeHr4Yu3oQg6-yxOwHU206yvIqh74o1eBGhDqtkc4a8xAt9_uIUVNlvm0Rz671wm3sDCqIxt_FdA51PXcb0eV6xoncxd8cn8jgY1BDKiDveK0okjRSl_8roVMG4CSM8_wEAA4PMC5iXoUa3GJvR7_MABbiA64vmzM-_MH97CIWLhcygMernVdoKZOn46GeKaJFG8fUibSdODWLjSGyOlakGpx5xSxITZlkuhVg4rw8yJ-rJyGP06iW8tKqG0Sa-fUaaMldt5Bu6E7xSU5h2wyA6uebjckBhDHE5aJKwJooMP69GGofg31HWqaSKNDjJDoscf1B7yL6qHh4SblFi7d9-KCvJorSCspioeQtA1m5JslnlLwgByrUs1SFGV4lo5bgvSJkb_lcHp_IdWOMcWQlwmYjvYFs2XQTW419U4guxZ8yr6ckUXGUzCeEJd3KjuGjaT_NAObviML7LqMbTSXxwnsvzG3VfQ3u_0Ga15o3tLPmgzPHzCYIlNoYQZelE4BAjM7iDEMbxMKKNkJvnhcJHhTQz9oqiyLyIfQVdldyVyX6VtOO5Or-n77bOyH5b182uhNSbP4cHMSTNTqQ_LbtbnNiUOwRf0KYyiHQf74Hes9mFEsdS_FVwEcHYC3SkYcZn5UeM5fv_sHoevjDahEP18J9S9RNIJXwGac27g0Z32Ow6CnT55np__N7yyNpOqz9LhIYJQxXqfnm9sXLfDVUwIKp4c2Lx3POyF1X-qwj1p2VZWj61tikMG21-Aw1dHjZgEVa-jAsp47l5nZJ4ZvS8RkOIWuPX6GgPmASjmvlQWcGX_heS943TRZqscacblRlby0uuuV96ZY9iJfDivxOCeFjgUOcLzmQ31BJUIm5Vn5LNdydtzWhraXk0kdSF9vhC39BH0VG4bNu94YEhm_RDIr-kfcHmoDfZZx8C8RxydHH5CaHDLM9QIg1EYirXT3LcBzQrvC9aYSg266E-bXKzi9iUPnyKENk6O5nU5GYWsONcyK0Cmfd6YE8kqIy5w8K235OhzJRhzTeM1tUh_z8eUHc_0U14tJ5lsSYBYtkkhyL4TPjemXthxf4tADjVeHqMoVu_JdRrvPuXcVDfJheugnf9KhQIkNP0nGyAYhtkUa_dwxiYQcS3-imEArbROzb_qFVBoGSLaLGHie82v-_jvJxyopOv2Ap-kLzXfqPF7nyGvTZDz1cC7xVhu9iTZXc-obQx4mODK96w2H-wlIeulFyovrJMeRM6vtev5QFlyK9xD5S6g5vzWaUxstsTGAPmHY-uoTsV3jNbcXGWWzKrqg58qUuFb0VREMFMNOE2_xJ8jpd-7YC6MKBQcn0gbNtsRU1aRpurf55VfBRe07ohc6bKf23_li7ZIu1kZigkQEDckaj8bmuxwN-HBwjwrSI6uyDaB8GPzuKdy41b_QYVWSJyK-S9WY"
+        },
+        "xhttpSettings": {
+          "path": "/xhttp",
+          "host": "",
+          "mode": "packet-up",
+          "noGRPCHeader": false,
+          "scMinPostsIntervalMs": "30",
+          "xmux": {
+            "maxConcurrency": "16-32",
+            "maxConnections": 0,
+            "cMaxReuseTimes": 0,
+            "hMaxRequestTimes": "600-900",
+            "hMaxReusableSecs": "1800-3000",
+            "hKeepAlivePeriod": 0
+          }
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "AsIs",
+        "redirect": "",
+        "noises": []
+      }
+    },
+    {
+      "tag": "blocked",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserDownlink": true,
+        "statsUserUplink": true
+      }
+    },
+    "system": {
+      "statsInboundDownlink": true,
+      "statsInboundUplink": true,
+      "statsOutboundDownlink": false,
+      "statsOutboundUplink": false
+    }
+  },
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "to-free"
+      },
+      {
+        "type": "field",
+        "outboundTag": "blocked",
+        "ip": [
+          "geoip:private"
+        ]
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:category-ru",
+          "regexp:\\\\.ru$",
+          "geosite:yandex",
+          "full:cp.cloudflare.com"
+        ],
+        "ip": [
+          "geoip:ru"
+        ],
+        "outboundTag": "direct"
+      }
+    ]
+  },
+  "stats": {},
+  "metrics": {
+    "tag": "metrics_out",
+    "listen": "127.0.0.1:11111"
+  },
+  "dns": {
+    "servers": [
+      {
+        "address": "localhost",
+        "port": 53,
+        "domains": [],
+        "expectIPs": [],
+        "unexpectedIPs": [],
+        "queryStrategy": "UseIP",
+        "skipFallback": true,
+        "disableCache": false,
+        "finalQuery": false
+      }
+    ],
+    "queryStrategy": "UseIP",
+    "tag": "dns_inbound",
+    "enableParallelQuery": false
+  },
+  "fakedns": null
+}
