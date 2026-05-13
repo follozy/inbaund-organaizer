@@ -9,8 +9,16 @@ def first():
 
 @app.route('/page')
 def load():
-  data = {'a': 0}
-  return render_template("page.html", data=data)
+  
+  
+  if request.args.get('page') == 'main':
+    data = {'type': 'main'}
+    return render_template("page.html", data=data)
+  elif request.args.get('page') == 'add_server':
+    data = {'type': 'add_server'}
+    return render_template('page.html', data=data)
+  else:
+    return 'заглушка'
 
 @app.get('/api')
 def get_api():

@@ -16,29 +16,60 @@ async function start(data) {
     const content_div = document.createElement('div')
     content_div.id = 'content_div'
     base_div.appendChild(content_div)
+    if (data['type'] == 'main'){
+        const list_client = document.createElement('ul')
+        list_client.id = 'list_client'
+        content_div.appendChild(list_client)
 
-    const list_client = document.createElement('ul')
-    list_client.id = 'list_client'
-    content_div.appendChild(list_client)
+        const Tresponse = await fetch(`/api`)
+        const clients = await Tresponse.json()
+        console.log(clients)
 
-    const Tresponse = await fetch(`/api`)
-    const clients = await Tresponse.json()
-    console.log(clients)
+        for (let key in clients){
+            const client_li = document.createElement('li')
+            client_li.className = 'client_li'
+            list_client.appendChild(client_li)
 
-    for (let key in clients){
-        const client_li = document.createElement('li')
-        client_li.className = 'client_li'
-        list_client.appendChild(client_li)
+            const li_div = document.createElement('div')
+            li_div.className = 'li_div'
+            client_li.appendChild(li_div)
 
-        const li_div = document.createElement('div')
-        li_div.className = 'li_div'
-        client_li.appendChild(li_div)
+            const client_page = document.createElement('a')
+            client_page.className = 'client_link'
+            li_div.appendChild(client_page)
+            client_page.innerHTML = clients[key]['email']
+            client_page.href = 'http://127.0.0.1:5000/'
+            
+        }
+    }
 
-        const client_page = document.createElement('a')
-        client_page.className = 'client_link'
-        li_div.appendChild(client_page)
-        client_page.innerHTML = clients[key]['email']
-        client_page.href = 'http://127.0.0.1:5000/'
-        
+    if (data['type'] == 'add_server'){
+        const lable = document.createElement('label')
+        lable.id = 'server_add_lable'
+        lable.innerHTML = 'Здесь вершатся сервера'
+        content_div.appendChild(lable)
+
+        const server_form = document.createElement('form')
+        server_form.id = 'server_form'
+        server_form.method = 'POST'
+        server_form.action = window.location.host + '/api?action=add_server'
+        content_div.appendChild(server_form)
+
+        const field_IPv4 = document.createElement('input')
+        field_IPv4.id = 'field_IPv4'
+        field_IPv4.className = 'server_field'
+        field_IPv4.type = 'text'
+        field_IPv4.placeholder = 'IPv4 field'
+        server_form.appendChild(field_IPv4)
+
+        server_form.appendChild(document.createElement('br'))
+
+        const field_port = document.createElement('input')
+        field_port.id = 'field_port'
+        field_port.className = 'server_field'
+        field_port.type = 'text'
+        field_port.placeholder = 'port field'
+        server_form.appendChild(field_port)
+
     }
 }
