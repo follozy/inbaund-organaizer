@@ -72,5 +72,3 @@ def set_users():
             clients.append(user)
         session.add_all(clients)
         session.commit()
-
-set_users()
