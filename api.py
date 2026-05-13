@@ -17,3 +17,9 @@ def take_users():
         
     return json.loads(json.dumps(users))
     
+    
+def add_sever(raw_data:str):
+    data = json.loads(raw_data)
+
+
+    return{'b': 'заглушка'}

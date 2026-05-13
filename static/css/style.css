@@ -1,0 +1,12 @@
+#header_div{
+    height: 40px;
+    background-color: rgb(104, 104, 104);
+}
+#body{
+    background-color: rgb(69, 69, 69);
+
+}
+.client_link{
+    color: aqua;
+    
+}
