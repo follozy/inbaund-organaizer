@@ -31,13 +31,13 @@ class Users(Base):
     __tablename__ = "users"
     id: Mapped[int] = mapped_column(primary_key=True)
     tgid: Mapped[int]
-    uuid: Mapped[str]
+    uuid: Mapped[str] = mapped_column(unique=True)
     flow: Mapped[str]
     email: Mapped[str]
     enable: Mapped[bool]
     created: Mapped[int]
     lustupdate: Mapped[int]
-    tarif: Mapped[str] = "white"
+    tarif: Mapped[str]
 
 
 Base.metadata.create_all(engine)

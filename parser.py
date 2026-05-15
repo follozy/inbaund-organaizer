@@ -58,16 +58,21 @@ def set_users():
     with Session(engine) as session:
         clients = []
         for id, client in enumerate(setings["clients"]):
-            print(client["email"])
+            #print(client["email"])
+            
+
+            client_tg = f'{client['email']}'.replace('[', ';').replace(']', ';').split(';')
+            #print(client_tg)
 
             user = Users(
-                tgid = 0,
+                tgid = client_tg[len(client_tg) - 2],
                 uuid = client["id"],
-                email = client["email"],
+                email = client_tg[0],
                 enable = client["enable"],
                 created = client["created_at"],
                 lustupdate = client["updated_at"],
-                flow = client["flow"]
+                flow = client["flow"],
+                tarif = 'white'
                 )
             clients.append(user)
         session.add_all(clients)

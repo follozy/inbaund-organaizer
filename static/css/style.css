@@ -1,5 +1,5 @@
 #header_div{
-    height: 40px;
+    height: 80px;
     background-color: rgb(104, 104, 104);
 }
 #body{
@@ -15,5 +15,8 @@
 }
 
 .server_fields_label{
+    color: aqua;
+}
+.user_stat{
     color: aqua;
 }

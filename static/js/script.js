@@ -6,23 +6,49 @@ document.addEventListener("DOMContentLoaded", function() {
 async function start(data) {
     console.log(data)
     const body = document.getElementById('body')
-    const base_div = document.createElement('div')
-    base_div.id = 'base_id'
-    body.appendChild(base_div)
+
 
     const header_div = document.createElement('div')
     header_div.id = 'header_div'
-    base_div.appendChild(header_div)
+    body.appendChild(header_div)
+
+    const nav_div = document.createElement('div')
+    nav_div.id = 'nav_div'
+    header_div.appendChild(nav_div)
+
+    const menus = ['users_list', 'servers_list', 'add_server']
+    const name_menus = ['list of user', 'list of server', 'add new server']
+
+    for(key in menus){
+        const link = document.createElement('a')
+        link.className = 'nav_link'
+        link.href = `/page?page=${menus[key]}`
+        link.innerHTML = name_menus[key]
+        nav_div.appendChild(link)
+    }
+
 
     const content_div = document.createElement('div')
     content_div.id = 'content_div'
-    base_div.appendChild(content_div)
-    if (data['type'] == 'main'){
+    body.appendChild(content_div)
+
+
+    if (data['type'] == 'users_list'){
         const list_client = document.createElement('ul')
         list_client.id = 'list_client'
         content_div.appendChild(list_client)
 
-        const Tresponse = await fetch(`/api?type=users`)
+        const update_b = document.createElement('button')
+        update_b.id = 'update_b'
+        update_b.innerHTML = 'update users in db'
+        header_div.appendChild(update_b)
+
+        update_b.addEventListener('click', async function(event) {
+            const response = await fetch('/api?type=users&action=update')
+            console.log('user_updated')
+        })
+
+        const Tresponse = await fetch(`/api?type=users&action=list`)
         const clients = await Tresponse.json()
         console.log(clients)
 
@@ -39,7 +65,7 @@ async function start(data) {
             client_page.className = 'client_link'
             li_div.appendChild(client_page)
             client_page.innerHTML = clients[key]['email']
-            client_page.href = 'http://127.0.0.1:5000/'
+            client_page.href = `/page?page=user&id=${clients[key]['id']}`
             
         }
     }
@@ -53,14 +79,25 @@ async function start(data) {
         const server_form = document.createElement('form')
         server_form.id = 'server_form'
         server_form.method = 'POST'
-        server_form.action = window.location.host + '/api?action=add_server'
+        server_form.action = window.location.host
         content_div.appendChild(server_form)
 
-        server_form.addEventListener('submit', function(event){
+        server_form.addEventListener('submit', async function(event){
             event.preventDefault()
 
             const data_server = new FormData(server_form)
             console.log(data_server)
+
+            try {
+            const response = await fetch('/api?type=servers&action=add_server', {
+            method: 'POST',
+            body: data_server // Отправляем данные
+            });
+            const result = await response.json();
+            console.log(result);
+            } catch (error) {
+            console.error('Ошибка:', error);
+            }
 
         })
 
@@ -93,5 +130,29 @@ async function start(data) {
         server_form.appendChild(send_data_b)
 
 
+    }
+
+    if (data['type'] == 'user'){
+        const Tresponse = await fetch(`/api?type=users&action=take_one&id=${data['id']}`)
+        const user = await Tresponse.json()
+        console.log(user)
+
+        const center_div = document.createElement('div')
+        center_div.id = 'center_div'
+        content_div.appendChild(center_div)
+
+        for (key in user){
+            const text = document.createElement('p')
+            text.className = 'user_stat'
+            center_div.appendChild(text)
+            if (key == 'created' || key == 'lustupdate'){
+                text.innerHTML = `${key}:${Date(user[key]).toLocaleString()}`
+            }else{
+                text.innerHTML = `${key}:${user[key]}`
+            }
+            
+            
+
+        }
     }
 }
