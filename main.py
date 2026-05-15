@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from parser import take_setings
-from api import take_users
+from api import take_users, take_fild
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,7 +22,13 @@ def load():
 
 @app.get('/api')
 def get_api():
-  return take_users()
+  if request.args.get('type') == 'users':
+    return take_users()
+  elif request.args.get('type') == 'tables':
+    return take_fild(request.args.get('name'))
+
+    
+
 
 @app.post('/api')
 def post_api():

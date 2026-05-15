@@ -1,6 +1,6 @@
 from data_base import engine, Servers, Users
 
-from sqlalchemy import select
+from sqlalchemy import select, Inspector
 from sqlalchemy.orm import Session
 
 import json
@@ -23,3 +23,9 @@ def add_sever(raw_data:str):
 
 
     return{'b': 'заглушка'}
+
+def take_fild(table:str):
+    inspector = Inspector(engine)
+    columns = inspector.get_columns(table)
+    column_names = [col['name'] for col in columns]
+    return column_names

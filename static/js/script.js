@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     start(SERVER_DATA);
+    
 });
 
 async function start(data) {
@@ -21,7 +22,7 @@ async function start(data) {
         list_client.id = 'list_client'
         content_div.appendChild(list_client)
 
-        const Tresponse = await fetch(`/api`)
+        const Tresponse = await fetch(`/api?type=users`)
         const clients = await Tresponse.json()
         console.log(clients)
 
@@ -55,21 +56,42 @@ async function start(data) {
         server_form.action = window.location.host + '/api?action=add_server'
         content_div.appendChild(server_form)
 
-        const field_IPv4 = document.createElement('input')
-        field_IPv4.id = 'field_IPv4'
-        field_IPv4.className = 'server_field'
-        field_IPv4.type = 'text'
-        field_IPv4.placeholder = 'IPv4 field'
-        server_form.appendChild(field_IPv4)
+        server_form.addEventListener('submit', function(event){
+            event.preventDefault()
 
-        server_form.appendChild(document.createElement('br'))
+            const data_server = new FormData(server_form)
+            console.log(data_server)
 
-        const field_port = document.createElement('input')
-        field_port.id = 'field_port'
-        field_port.className = 'server_field'
-        field_port.type = 'text'
-        field_port.placeholder = 'port field'
-        server_form.appendChild(field_port)
+        })
+
+        const Tresponse = await fetch(`/api?type=tables&name=servers`)
+        const columns = await Tresponse.json()
+        console.log(columns)
+        for (key in columns){
+            if (key == 0){
+                continue
+            }
+            const field = document.createElement('input')
+            field.id = `field_${columns[key]}`
+            field.className = 'server_field'
+            field.type = 'text'
+            field.name = columns[key]
+            field.placeholder = `${columns[key]} field`
+            server_form.appendChild(field)
+
+            const label_field = document.createElement('label')
+            label_field.className = 'server_fields_label'
+            label_field.innerHTML = columns[key]
+            server_form.appendChild(label_field)
+
+            server_form.appendChild(document.createElement('br'))
+        }
+        const send_data_b = document.createElement('input')
+        send_data_b.id = 'send_data_b'
+        send_data_b.type = 'submit'
+        send_data_b.value = 'Add server'
+        server_form.appendChild(send_data_b)
+
 
     }
 }
